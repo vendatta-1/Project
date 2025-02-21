@@ -6,6 +6,7 @@ namespace Project.Service
     public interface IService<T>
         where T : Entity, new()
     {
+        public bool Insert(T entity);
         public T GetById(int id);
         public bool DeleteById(int id);
         public bool Delete(T entity);

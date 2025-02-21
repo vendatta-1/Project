@@ -1,41 +1,45 @@
-﻿using Project.Models;
-using Project.Models.ValueObjects;
-using Project.Shared;
-
-namespace Project;
+﻿namespace Project;
 public class Program
 {
     public static void Main()
     {
-        // data stored in binary 
-        // convert binary to read format ( json , xml )
-
-        Employee employee = new Employee()
+        try
         {
-            Id = 1,
-            FirstName = "Abdullah",
-            LastName = "Musa",
-            Age = 30,
-            DepartmentId = 1,
-            Type = EmployeeType.FullTime,
-            Address = new Address("123 Main St", "Anytown", "CA", "USA", "12345"),
-            Supervisor = new Employee() { Id = 2, FirstName = "John", LastName = "Doe" },
-            Projects = new List<Models.Project> { new Models.Project() { Name = "Project 1",
-                Interval = new Interval(DateOnly.FromDateTime (DateTime.Today),DateOnly.FromDateTime( DateTime.Today.AddDays(100))) } },
-            Interval = new Interval(DateOnly.FromDateTime(DateTime.Today), DateOnly.FromDateTime(DateTime.Today.AddMonths(100))),
-            Salary = 50000m,
 
-        };
-        var department = new Department()
+            using var file = File.Open("Text.txt", FileMode.Append);
+
+            //file.Dispose();
+
+            //TextWriter
+            //TextReader
+            //StreamReader
+            //StreamWriter
+            //StreamContent
+            //Stream
+
+
+            file.Close();
+
+            File.WriteAllText("Text.txt", "Content2");
+
+
+
+        }
+        catch (Exception ex)
         {
-            Id = 1,
-            Name = "IT",
-            Employees = new List<Employee> { employee },
-            Projects = new List<Models.Project> { new Models.Project() { Name = "Project 1",
-                Interval = new Interval(DateOnly.FromDateTime (DateTime.Today),DateOnly.FromDateTime( DateTime.Today.AddDays(100))) } }
-        };
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine(ex.ToString());
+            Console.ForegroundColor = ConsoleColor.White;
+        }
 
 
+
+
+
+    }
+    private static int Sum(int x, int y, out int result)
+    {
+        return result = x + y;
     }
 }
 

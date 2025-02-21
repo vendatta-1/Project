@@ -40,7 +40,7 @@ namespace Project.Service
             return false;
         }
 
-        public IEnumerable<T> GetAll()
+        public IEnumerable<T?> GetAll()
         {
             return _context.Set<T>().ToList();
         }
@@ -49,6 +49,23 @@ namespace Project.Service
         {
             var entity = _context.Set<T>().Find(new { id });
             return entity;
+        }
+
+        public bool Insert(T entity)
+        {
+            try
+            {
+                _context.Set<T>().Add(entity);
+                return _context.SaveChanges() > 0;
+            }
+            catch (Exception ex)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine(ex.ToString());
+                Console.ForegroundColor = ConsoleColor.White;
+                return false;
+            }
+
         }
 
         public bool Update(T entity)
